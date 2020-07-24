@@ -3,6 +3,8 @@
 // load modules
 const express = require("express")
 const morgan = require("morgan")
+const router = require("./routes/index")
+const bodyParser = require("body-parser")
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -10,6 +12,10 @@ const enableGlobalErrorLogging =
 
 // create the Express app
 const app = express()
+
+// make the HTTP POST payload available on req
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // setup morgan which gives us http request logging
 app.use(morgan("dev"))
@@ -22,6 +28,9 @@ app.get("/", (req, res) => {
     message: "Welcome to the REST API project!",
   })
 })
+
+// pass request and response through router
+app.use("/api", router)
 
 // send 404 if no other route matched
 app.use((req, res) => {
