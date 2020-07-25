@@ -11,12 +11,12 @@ module.exports = class UserService {
   /**
    * Add a new user to the data store
    * Uses bcryptjs to generate a password hash
-   * @param {Object} userData destructured from req.body
+   * @param {Object} req.body destructured
    * @return {Promise} rejected if fail, resolved otherwise
    */
   async addUser({ firstName, lastName, emailAddress, password }) {
     password = bcrypt.hashSync(password, 8)
-    await User.sync({ force: true })
+    await User.sync()
     await User.create({
       firstName,
       lastName,

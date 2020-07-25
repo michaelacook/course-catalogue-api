@@ -3,7 +3,7 @@ Encapsulates the logic of retrieving the correct data
 given the current request and returning it to the client
 
 The naming convention for methods takes the following format:
-    modelNameHTTPVERB
+  modelNameHTTPVERB
 */
 
 const UserService = new (require("../services/UserService"))()
@@ -28,12 +28,7 @@ module.exports = class UserController {
         })
       }
       await UserService.addUser(req.body)
-        .then(() => res.location("/").end())
-        .catch((error) => {
-          console.error(error.message, error.stack)
-          res.json({ message: error.message })
-          res.status(500).end()
-        })
+      return res.location("/").end()
     } catch (error) {
       next(error)
     }
