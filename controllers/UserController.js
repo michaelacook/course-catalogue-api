@@ -28,7 +28,25 @@ module.exports = class UserController {
         })
       }
       await UserService.addUser(req.body)
-      return res.location("/").end()
+      return res.status(201).location("/").end()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * Handle control for GET to /api/users route
+   * Returns the currently authenticated user
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
+   */
+  async usersGET(req, res, next) {
+    try {
+      return res.status(200).json({
+        message:
+          "Route in progress. In the future will return currently authenticated user.",
+      })
     } catch (error) {
       next(error)
     }
