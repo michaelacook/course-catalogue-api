@@ -68,8 +68,18 @@ module.exports = class CourseController {
     }
   }
 
+  /**
+   * Handle control for /api/courses/:id DELETE 
+   * Delete a course 
+   * @param {Object} req 
+   * @param {Object} res 
+   * @param {Function} next 
+   */
   async coursesDELETE(req, res, next) {
     try {
+      const id = req.params.id
+      await CourseService.deleteCourse(id)
+      return res.status(204).end()
     } catch (error) {
       next(error)
     }

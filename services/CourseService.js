@@ -66,12 +66,22 @@ module.exports = class CourseService {
   async updateCourse(id, HTTPbody) {
     await Course.sync()
     const course = await Course.findByPk(id)
-    console.log(course)
     for (let key in HTTPbody) {
       if (key !== "id") {
         course[key] = HTTPbody[key]
         await course.save()
       }
     }
+  }
+
+  /**
+   * Delete a course
+   * @param {Number} id - primary key for record
+   * @return {Void}
+   */
+  async deleteCourse(id) {
+    await Course.sync()
+    const course = await Course.findByPk(id)
+    await course.destroy()
   }
 }
