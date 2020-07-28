@@ -3,6 +3,7 @@ const router = express.Router()
 
 // validators
 const newUserValidator = require("../validation/newUserValidator")
+const courseValidator = require("../validation/courseValidator")
 
 // controllers
 const UserController = new (require("../controllers/UserController"))()
@@ -20,10 +21,10 @@ router.get("/courses/", (req, res, next) =>
 router.get("/courses/:id", (req, res, next) =>
   CourseController.coursesListGET(req, res, next)
 )
-router.post("/courses/", (req, res, next) =>
+router.post("/courses/", courseValidator, (req, res, next) =>
   CourseController.coursesPOST(req, res, next)
 )
-router.put("/courses/:id", (req, res, next) =>
+router.put("/courses/:id", courseValidator, (req, res, next) =>
   CourseController.coursesPUT(req, res, next)
 )
 router.delete("/courses/:id", (req, res, next) =>

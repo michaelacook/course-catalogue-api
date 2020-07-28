@@ -36,7 +36,7 @@ module.exports = class CourseController {
   }
 
   /**
-   * Handle control for the /api/courses POST 
+   * Handle control for the /api/courses POST
    * Add a new course to the data store
    * @param {Object} req
    * @param {Object} res
@@ -44,6 +44,12 @@ module.exports = class CourseController {
    */
   async coursesPOST(req, res, next) {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return res.status(400).json({
+          errors: errors.array().map((error) => error.msg),
+        })
+      }
       const id = await CourseService.addCourse(req.body)
       return res.status(201).location(`/api/courses/${id}`).end()
     } catch (error) {
@@ -54,12 +60,18 @@ module.exports = class CourseController {
   /**
    * Handle control for /api/courses/:id PUT
    * Update a course record
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Function} next 
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
    */
   async coursesPUT(req, res, next) {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return res.status(400).json({
+          errors: errors.array().map((error) => error.msg),
+        })
+      }
       const id = req.params.id
       await CourseService.updateCourse(id, req.body)
       return res.status(204).end()
@@ -69,11 +81,11 @@ module.exports = class CourseController {
   }
 
   /**
-   * Handle control for /api/courses/:id DELETE 
-   * Delete a course 
-   * @param {Object} req 
-   * @param {Object} res 
-   * @param {Function} next 
+   * Handle control for /api/courses/:id DELETE
+   * Delete a course
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Function} next
    */
   async coursesDELETE(req, res, next) {
     try {
