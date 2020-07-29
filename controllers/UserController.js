@@ -43,10 +43,7 @@ module.exports = class UserController {
    */
   async usersGET(req, res, next) {
     try {
-      return res.status(200).json({
-        message:
-          "Route in progress. In the future will return currently authenticated user.",
-      })
+      return res.status(200).json({ user: req.user })
     } catch (error) {
       next(error)
     }
