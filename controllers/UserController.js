@@ -6,7 +6,7 @@ The naming convention for methods takes the following format:
   modelNameHTTPVERB
 */
 
-const UserService = new (require("../services/UserService"))
+const UserService = new (require("../services/UserService"))()
 const { validationResult } = require("express-validator")
 
 module.exports = class UserController {
@@ -25,6 +25,14 @@ module.exports = class UserController {
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array().map((error) => error.msg),
+        })
+      }
+      const userAlreadyExists = await UserService.userExists(
+        req.body.emailAddress
+      )
+      if (userAlreadyExists) {
+        return res.status(400).json({
+          error: "A user with the provided email address already exists.",
         })
       }
       await UserService.addUser(req.body)

@@ -43,4 +43,22 @@ module.exports = class UserService {
     if (user) return Promise.resolve(user)
     return Promise.reject()
   }
+
+  /**
+   * Determine if a user exists in the database
+   * @param {String} email
+   * @return {Boolean} true if user exists, else false
+   */
+  async userExists(email) {
+    await User.sync()
+    const user = await User.findOne({
+      where: {
+        emailAddress: email,
+      },
+    })
+    if (user) {
+      return true
+    }
+    return false
+  }
 }

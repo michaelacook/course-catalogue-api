@@ -9,8 +9,8 @@ const newUserValidator = require("../validation/newUserValidator")
 const courseValidator = require("../validation/courseValidator")
 
 // controllers
-const UserController = new (require("../controllers/UserController"))
-const CourseController = new (require("../controllers/CourseController"))
+const UserController = new (require("../controllers/UserController"))()
+const CourseController = new (require("../controllers/CourseController"))()
 
 router.get("/users", auth, (req, res, next) =>
   UserController.usersGET(req, res, next)

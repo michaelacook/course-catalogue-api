@@ -2,7 +2,7 @@
 
 const auth = require("basic-auth")
 const bcrypt = require("bcryptjs")
-const UserService = new (require("../services/UserService"))
+const UserService = new (require("../services/UserService"))()
 
 module.exports = () => {
   /**
@@ -22,7 +22,7 @@ module.exports = () => {
       const user = await UserService.getUser(name)
       if (user) {
         const authed = bcrypt.compareSync(pass, user.password)
-        if (authed) { 
+        if (authed) {
           req.user = user
         } else {
           errorMessage = `Authentication failed for ${user.emailAddress}`
