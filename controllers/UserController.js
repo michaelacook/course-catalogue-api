@@ -6,7 +6,7 @@ The naming convention for methods takes the following format:
   modelNameHTTPVERB
 */
 
-const UserService = new (require("../services/UserService"))()
+const UserService = new (require("../services/UserService"))
 const { validationResult } = require("express-validator")
 
 module.exports = class UserController {

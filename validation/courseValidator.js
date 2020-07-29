@@ -11,13 +11,11 @@ module.exports = [
       checkNull: true,
       checkFalsy: true,
     })
-    .isAlpha()
     .withMessage("Please provide a title."),
   body("description")
     .exists({
       checkNull: true,
       checkFalsy: true,
     })
-    .isAlphanumeric()
     .withMessage("Please provide a course description."),
 ]

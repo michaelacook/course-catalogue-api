@@ -27,4 +27,20 @@ module.exports = class UserService {
     })
     return Promise.resolve()
   }
+
+  /**
+   * Get a user by associated email
+   * @param {String} email - user email
+   * @return {Promise} user
+   */
+  async getUser(email) {
+    await User.sync()
+    const user = await User.findOne({
+      where: {
+        emailAddress: email,
+      },
+    })
+    if (user) return Promise.resolve(user)
+    return Promise.reject()
+  }
 }

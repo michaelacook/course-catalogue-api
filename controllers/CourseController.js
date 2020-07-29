@@ -1,4 +1,4 @@
-const CourseService = new (require("../services/CourseService"))()
+const CourseService = new (require("../services/CourseService"))
 const { validationResult } = require("express-validator")
 
 module.exports = class CourseController {
