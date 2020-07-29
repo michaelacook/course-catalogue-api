@@ -22,12 +22,16 @@ module.exports = () => {
       const user = await UserService.getUser(name)
       if (user) {
         const authed = bcrypt.compareSync(pass, user.password)
-        if (authed) req.user = user
+        if (authed) { 
+          req.user = user
+        } else {
+          errorMessage = `Authentication failed for ${user.emailAddress}`
+        }
       } else {
         errorMessage = `Authentication failed for username: ${name}`
       }
     } else {
-      errorMessage = "Auth header not found."
+      errorMessage = "Authorization header not found."
     }
     if (errorMessage) {
       console.warn(errorMessage)
