@@ -84,4 +84,24 @@ module.exports = class CourseService {
     const course = await Course.findByPk(id)
     await course.destroy()
   }
+
+  /**
+   * Determine if a course is owned by a given user
+   * @param {Number} userId - PK of currently authenticated user
+   * @param {Number} courseId - foreign key on Course record
+   * @return {Boolean} true if currently authenticated user owns course, else false
+   */
+  async isOwner(userId, courseId) {
+    await Course.sync()
+    const course = await Course.findOne({
+      where: {
+        id: courseId,
+        userId: userId,
+      },
+    })
+    if (course) {
+      return Promise.resolve(true)
+    }
+    return Promise.resolve(false)
+  }
 }

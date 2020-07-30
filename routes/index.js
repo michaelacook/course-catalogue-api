@@ -3,8 +3,10 @@ const router = express.Router()
 
 // authentication
 const auth = require("../auth/authenticator")()
+// authorization
+const authorize = require("../auth/authorizer")()
 
-// validators
+// validation chains
 const newUserValidator = require("../validation/newUserValidator")
 const courseValidator = require("../validation/courseValidator")
 
@@ -27,10 +29,10 @@ router.get("/courses/:id", (req, res, next) =>
 router.post("/courses/", auth, courseValidator, (req, res, next) =>
   CourseController.coursesPOST(req, res, next)
 )
-router.put("/courses/:id", auth, courseValidator, (req, res, next) =>
+router.put("/courses/:id", auth, authorize, courseValidator, (req, res, next) =>
   CourseController.coursesPUT(req, res, next)
 )
-router.delete("/courses/:id", auth, (req, res, next) =>
+router.delete("/courses/:id", auth, authorize, (req, res, next) =>
   CourseController.coursesDELETE(req, res, next)
 )
 
