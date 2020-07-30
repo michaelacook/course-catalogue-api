@@ -12,7 +12,7 @@ module.exports = class CourseController {
   async coursesGET(req, res, next) {
     try {
       const courses = await CourseService.getCourses()
-      return res.status(200).json({ courses })
+      return res.status(200).json(courses)
     } catch (error) {
       next(error)
     }

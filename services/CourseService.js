@@ -39,7 +39,7 @@ module.exports = class CourseService {
     await Course.sync()
     const courses = await Course.findAndCountAll()
     if (courses) {
-      return Promise.resolve(courses)
+      return Promise.resolve({ courses })
     }
     return Promise.reject()
   }
