@@ -1,7 +1,6 @@
 /*
 Authorization middleware
-Handles checking of user ownership of 
-a resource 
+Handles checking of user ownership of a resource 
 */
 
 const CourseService = new (require("../services/CourseService"))()
@@ -16,9 +15,9 @@ module.exports = () => {
    * @param {Function} next - next middleware function
    */
   return async function (req, res, next) {
-    const userID = req.user.id
-    const courseID = req.params.id
-    const owner = await CourseService.isOwner(userID, courseID)
+    const userId = req.user.id
+    const courseId = req.params.id
+    const owner = await CourseService.isOwner(userId, courseId)
     if (!owner) {
       return res.status(403).end()
     }
