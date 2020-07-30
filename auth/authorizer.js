@@ -1,7 +1,4 @@
-/*
-Authorization middleware
-Handles checking of user ownership of a resource 
-*/
+/* Authorization middleware */
 
 const CourseService = new (require("../services/CourseService"))()
 
