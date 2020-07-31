@@ -22,8 +22,14 @@ module.exports = () => {
       const user = await UserService.getUser(name)
       if (user) {
         const authed = bcrypt.compareSync(pass, user.password)
+        // truncate the user object
         if (authed) {
-          req.user = user
+          req.user = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.emailAddress,
+          }
         } else {
           errorMessage = `Authentication failed for ${user.emailAddress}`
         }

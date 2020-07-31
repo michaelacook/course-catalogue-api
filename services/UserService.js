@@ -33,7 +33,7 @@ module.exports = class UserService {
    * @param {String} email - user email
    * @return {Promise} user
    */
-  async getUser(email) {
+  async getUser(email, truncated=true) {
     await User.sync()
     const user = await User.findOne({
       where: {
