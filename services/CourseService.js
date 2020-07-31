@@ -39,8 +39,8 @@ module.exports = class CourseService {
     await Course.sync()
     const courses = await Course.findAndCountAll({
       attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
+        exclude: ["createdAt", "updatedAt"],
+      },
     })
     if (courses) {
       return Promise.resolve({ courses })
@@ -57,8 +57,8 @@ module.exports = class CourseService {
     await Course.sync()
     const course = await Course.findByPk(id, {
       attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
+        exclude: ["createdAt", "updatedAt"],
+      },
     })
     if (course) {
       return Promise.resolve(course)
