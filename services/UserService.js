@@ -25,7 +25,7 @@ module.exports = class UserService {
     }).catch((err) => {
       return Promise.reject(err)
     })
-    return Promise.resolve()
+    return true
   }
 
   /**
@@ -33,14 +33,14 @@ module.exports = class UserService {
    * @param {String} email - user email
    * @return {Promise} user
    */
-  async getUser(email, truncated = true) {
+  async getUser(email) {
     await User.sync()
     const user = await User.findOne({
       where: {
         emailAddress: email,
       },
     })
-    if (user) return Promise.resolve(user)
+    if (user) return user
     return Promise.reject()
   }
 
