@@ -28,7 +28,7 @@ module.exports = class CourseService {
       .catch((err) => {
         return Promise.reject(err)
       })
-    if (id) return Promise.resolve(id)
+    if (id) return id
   }
 
   /**
@@ -43,7 +43,7 @@ module.exports = class CourseService {
       },
     })
     if (courses) {
-      return Promise.resolve({ courses })
+      return { courses }
     }
     return Promise.reject()
   }
@@ -61,7 +61,7 @@ module.exports = class CourseService {
       },
     })
     if (course) {
-      return Promise.resolve(course)
+      return { course }
     }
     return Promise.reject()
   }
@@ -108,8 +108,8 @@ module.exports = class CourseService {
       },
     })
     if (course) {
-      return Promise.resolve(true)
+      return true
     }
-    return Promise.resolve(false)
+    return false
   }
 }

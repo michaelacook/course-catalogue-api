@@ -29,7 +29,7 @@ module.exports = class CourseController {
     try {
       const id = req.params.id
       const course = await CourseService.getCourse(id)
-      return res.status(200).json({ course })
+      return res.status(200).json(course)
     } catch (error) {
       next(error)
     }
