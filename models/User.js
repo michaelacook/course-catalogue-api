@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
+      modelName: "user"
     }
   )
   User.associate = ({ Course }) => {
