@@ -20,12 +20,6 @@ if (config.use_env_variable) {
   )
 }
 
-// test connection
-sequelize
-  .authenticate()
-  .then(() => console.log("Database connection successful"))
-  .catch((err) => console.error("Database connection failed"))
-
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
