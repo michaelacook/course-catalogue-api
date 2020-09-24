@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User }) {
       Course.belongsTo(User, {
-        foreignKey: "userId",
+        foreignKey: {
+          fieldName: "userId"
+        },
         allowNull: false,
       })
     }
