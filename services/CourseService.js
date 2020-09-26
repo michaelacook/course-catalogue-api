@@ -59,6 +59,11 @@ module.exports = class CourseService {
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
+      include: [
+        {
+          model: User
+        }
+      ]
     })
     if (course) {
       return { course }
