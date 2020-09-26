@@ -36,7 +36,7 @@ module.exports = class CourseService {
    * @return {Promise}
    */
   async getCourses() {
-    await Course.sync()
+    // await Course.sync()
     const courses = await Course.findAndCountAll({
       attributes: {
         exclude: ["createdAt", "updatedAt"],
