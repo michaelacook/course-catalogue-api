@@ -1,4 +1,4 @@
-const { Course } = require("../models/index")
+const { Course, User } = require("../models/index")
 
 module.exports = class CourseService {
   /**
