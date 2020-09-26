@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Course',
-    schema: "course-catalogue"
   });
   return Course;
 };
