@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./app.js",
-    "seed": "cross-env DB_ENABLE_LOGGING=true node './seed'",
     "cleanup": "prettier --write --no-semi ."
   },
   "keywords": [],
@@ -25,8 +24,7 @@
     "morgan": "^1.9.0",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
-    "promise.prototype.finally": "^3.1.0",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.4"
   },
   "engines": {
     "node": "14.0.0",
