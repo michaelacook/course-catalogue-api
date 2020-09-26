@@ -2,23 +2,22 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.addColumn(
-      "Courses",
-      "userId",
-      {
-        type: Sequelize.INTEGER,
+    return queryInterface.addConstraint("Courses", {
+        fields: ["userId"],
+        type: "foreign key",
+        name: "userId",
         references: {
-          model: "Users",
-          key: "id"
+          table: "Users",
+          field: "id"
         },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL"
+        onUpdate: "cascade",
+        onDelete: "cascade"
       }
     )
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn(
+    return queryInterface.removeConstraint(
       "Courses",
       "userId"
     )
