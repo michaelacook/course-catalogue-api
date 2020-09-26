@@ -37,13 +37,11 @@ module.exports = class CourseService {
    */
   async getCourses() {
     // await Course.sync()
-    const courses = await Course.findAndCountAll(
-    //   {
-    //   attributes: {
-    //     exclude: ["createdAt", "updatedAt", "userId"],
-    //   },
-    // }
-    )
+    const courses = await Course.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    })
     if (courses) {
       return { courses }
     }

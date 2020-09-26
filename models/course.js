@@ -17,7 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     estimatedTime: DataTypes.STRING,
-    materialsNeeded: DataTypes.STRING
+    materialsNeeded: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: "id",
+      }
+    }
   }, {
     sequelize,
     modelName: 'Course',
