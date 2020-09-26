@@ -5,6 +5,7 @@ const express = require("express")
 const morgan = require("morgan")
 const router = require("./routes/index")
 const bodyParser = require("body-parser")
+const cors = require("cors")
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -12,6 +13,7 @@ const enableGlobalErrorLogging =
 
 // create the Express app
 const app = express()
+app.use(cors())
 
 // make the HTTP POST payload available on req
 app.use(bodyParser.json())
