@@ -20,6 +20,9 @@ router.get("/users", auth, (req, res, next) =>
 router.post("/users", newUserValidator, (req, res, next) =>
   UserController.usersPOST(req, res, next)
 )
+router.delete("/users/:id", auth, (req, res, next) =>
+  UserController.usersDELETE(req, res, next)
+)
 router.get("/courses/", (req, res, next) =>
   CourseController.coursesGET(req, res, next)
 )

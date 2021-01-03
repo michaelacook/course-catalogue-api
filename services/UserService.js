@@ -61,4 +61,18 @@ module.exports = class UserService {
     }
     return false
   }
+
+  async deleteUser(id) {
+    try {
+      await User.sync()
+      await User.destroy({
+        where: {
+          id: id,
+        },
+      })
+      return true
+    } catch (error) {
+      Promise.reject(error)
+    }
+  }
 }

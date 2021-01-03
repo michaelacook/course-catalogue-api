@@ -62,9 +62,9 @@ module.exports = class CourseService {
       include: [
         {
           model: User,
-          as: "author"
-        }
-      ]
+          as: "author",
+        },
+      ],
     })
     if (course) {
       return { course }
